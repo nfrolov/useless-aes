@@ -1,5 +1,10 @@
 package tiralabra.aes.core;
 
+/**
+ * Implementation of the AES Key Expansion algorithm.
+ *
+ * @author Nikita Frolov
+ */
 public class KeyScheduler {
 
     private final byte[] sbox = SBox.FORWARD;
@@ -8,6 +13,12 @@ public class KeyScheduler {
     public KeyScheduler() {
     }
 
+    /**
+     * Generates a series of round keys from the cipher key.
+     *
+     * @param   key     128-bit key as an array of 16 bytes
+     * @return          round keys as a linear array of 4-byte words
+     */
     public int[] schedule(final byte[] key) {
         if ((key.length / 4) != 4) {
             throw new IllegalArgumentException("Key length is not 128 bits.");
@@ -32,10 +43,24 @@ public class KeyScheduler {
         return w;
     }
 
+    /**
+     * RotWord() function described in the standard.
+     * Takes a word [a1,a2,a3,a4] and returns the word [a2,a3,a4,a1].
+     *
+     * @param   word    4-byte word
+     * @return          output word
+     */
     private int rotWord(final int word) {
         return (word >>> 8) | (word << 24);
     }
 
+    /**
+     * SubWord() function described in the standard.
+     * Takes a word and applies a S-box to each of the four bytes.
+     *
+     * @param   word    4-byte word
+     * @return          output word
+     */
     private int subWord(final int word) {
         return (sbox[word & 0xff] & 0xff) | ((sbox[(word >> 8) & 0xff] & 0xff) << 8)
                 | ((sbox[(word >> 16) & 0xff] & 0xff) << 16) | (sbox[(word >> 24) & 0xff] << 24);

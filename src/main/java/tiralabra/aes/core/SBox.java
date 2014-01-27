@@ -1,5 +1,10 @@
 package tiralabra.aes.core;
 
+/**
+ * Rijndael S-box matrices.
+ *
+ * @author Nikita Frolov
+ */
 public final class SBox {
 
     public static final byte[] FORWARD = new byte[] {

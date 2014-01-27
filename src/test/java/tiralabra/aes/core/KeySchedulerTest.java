@@ -16,6 +16,10 @@ public class KeySchedulerTest {
 
     private KeyScheduler scheduler;
 
+    /**
+     * Test vectors for the AES key schedule.
+     * Source: http://www.samiam.org/key-schedule.html
+     */
     @DataPoints
     public static final byte[][] vectors = new byte[][] {{
         (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00,
@@ -121,7 +125,7 @@ public class KeySchedulerTest {
         final byte[] key;
         final int[] out;
 
-        key = Arrays.copyOfRange(vector, 0, 16);
+        key = Arrays.copyOfRange(vector, 0, 16); // block of first 16 bytes is a key
         out = scheduler.schedule(key);
 
         assertThat(out, is(not(nullValue())));
