@@ -10,7 +10,7 @@ import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
 @RunWith(Theories.class)
-public class CipherEncryptTest {
+public class CipherTest {
 
     private Cipher cipher;
 
