@@ -9,6 +9,9 @@ import java.util.Arrays;
  */
 public class InverseCipher extends AbstractCipher {
 
+    /**
+     * @param   key     cipher key
+     */
     public InverseCipher(final byte[] key) {
         super(key);
     }
@@ -19,11 +22,8 @@ public class InverseCipher extends AbstractCipher {
      * @param   in      ciphertext block as an array of 16 bytes
      * @return          plaintext
      */
-    public byte[] decrypt(final byte[] in) {
-        if (16 != in.length) {
-            throw new IllegalArgumentException("Block length is not 128 bits.");
-        }
-
+    @Override
+    protected byte[] processBlock(final byte[] in) {
         final byte[] state = Arrays.copyOf(in, in.length);
 
         addRoundKey(state, 10);

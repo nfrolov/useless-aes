@@ -10,9 +10,9 @@ import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
 @RunWith(Theories.class)
-public class CipherTest {
+public class ForwardCipherTest {
 
-    private Cipher cipher;
+    private ForwardCipher cipher;
 
     /**
      * Few test vectors for the AES encryption.
@@ -59,12 +59,12 @@ public class CipherTest {
     }
 
     @Theory
-    public void testEncrypt(final byte[][] vector) {
+    public void testProcess(final byte[][] vector) {
         final byte[] key = vector[0], plaintext = vector[1], expectedCiphertext = vector[2];
         final byte[] ciphertext;
 
-        cipher = new Cipher(key);
-        ciphertext = cipher.encrypt(plaintext);
+        cipher = new ForwardCipher(key);
+        ciphertext = cipher.process(plaintext);
 
         assertThat(ciphertext, is(equalTo(expectedCiphertext)));
     }

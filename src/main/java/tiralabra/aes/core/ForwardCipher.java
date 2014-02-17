@@ -7,12 +7,12 @@ import java.util.Arrays;
  *
  * @author Nikita Frolov
  */
-public class Cipher extends AbstractCipher {
+public class ForwardCipher extends AbstractCipher {
 
     /**
      * @param   key     cipher key
      */
-    public Cipher(final byte[] key) {
+    public ForwardCipher(final byte[] key) {
         super(key);
     }
 
@@ -22,11 +22,8 @@ public class Cipher extends AbstractCipher {
      * @param   in      plaintext block as an array of 16 bytes
      * @return          ciphertext
      */
-    public byte[] encrypt(final byte[] in) {
-        if (16 != in.length) {
-            throw new IllegalArgumentException("Block length is not 128 bits.");
-        }
-
+    @Override
+    public byte[] processBlock(final byte[] in) {
         final byte[] state = Arrays.copyOf(in, in.length);
 
         addRoundKey(state, 0);

@@ -59,12 +59,12 @@ public class InverseCipherTest {
     }
 
     @Theory
-    public void testDecrypt(final byte[][] vector) {
+    public void testProcess(final byte[][] vector) {
         final byte[] key = vector[0], expectedPlaintext = vector[1], ciphertext = vector[2];
         final byte[] plaintext;
 
         cipher = new InverseCipher(key);
-        plaintext = cipher.decrypt(ciphertext);
+        plaintext = cipher.process(ciphertext);
 
         assertThat(plaintext, is(equalTo(expectedPlaintext)));
     }

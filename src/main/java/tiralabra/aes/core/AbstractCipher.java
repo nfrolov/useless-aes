@@ -1,6 +1,6 @@
 package tiralabra.aes.core;
 
-public abstract class AbstractCipher {
+public abstract class AbstractCipher implements BlockCipher {
 
     private static final KeyScheduler keyScheduler = new KeyScheduler();
 
@@ -9,6 +9,32 @@ public abstract class AbstractCipher {
     public AbstractCipher(final byte[] key) {
         roundKeys = keyScheduler.schedule(key);
     }
+
+    /**
+     * Returns block size in bytes.
+     *
+     * @return          block size
+     */
+    @Override
+    public int getBlockSize() {
+        return 16;
+    }
+
+    /**
+     * Performs cipher transformation on the block.
+     *
+     * @param   in      input block
+     * @return          transformed block
+     */
+    @Override
+    public byte[] process(byte[] in) {
+        if (getBlockSize() != in.length) {
+            throw new IllegalArgumentException("Block length is not 128 bits.");
+        }
+        return processBlock(in);
+    }
+
+    protected abstract byte[] processBlock(byte[] in);
 
     /**
      * Replace each byte of the state with appropriate value from the specified S-box.
