@@ -47,13 +47,14 @@ public class CBCCipher implements BlockCipher {
             throw new IllegalArgumentException("Block length is not " + getBlockSize() + " bytes.");
         }
 
-        final byte[] out;
+        byte[] out;
 
         if (encryption) {
+            out = new byte[in.length];
             for (int i = 0; i < in.length; ++i) {
-                in[i] ^= previous[i];
+                out[i] = (byte) (in[i] ^ previous[i]);
             }
-            out = cipher.process(in);
+            out = cipher.process(out);
             System.arraycopy(out, 0, previous, 0, previous.length);
         } else {
             out = cipher.process(in);
