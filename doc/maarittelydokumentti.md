@@ -1,18 +1,10 @@
 Määrittelydokumentti
 ===
 
-Johdanto
----
+Työssä toteutetaan lohkosalausmenetelmää AES sekä salalohkojen ketjutukset ECB ja CBC.
 
-Työssä toteutetaan lohkosalausmenetelmää AES sekä salalohkojen ketjutukset ECB, CBC ja CTR.
-
-
-Ohjelman syöte
----
-
-Ohjelman syötteenä toimii salattava viesti tai salattu teksti. Ohjelma kysyy käyttäjältä
-avaimen Base64 muodossa ja tulostaa tuloksen.
-
+AES on symmetrinen lohkosalausalgoritmi ja sen aika- ja tilavaativuudet ovat O(1) per lohko.
+Vastaavasti viestin (n lohkoa) salauksen aikavaativuus on O(n) ja tilavaativuus O(1).
 
 Linkit
 ---

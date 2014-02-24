@@ -1,11 +1,8 @@
 Toteutusdokumentti
 ===
 
-Ratkaiseeko toteutuksesi ongelman määrittelyssä esittämälläsi tehokkuudella
----
+Toteutus ratkaisee ongelman määrittelydokumentin mukaisella tehokkuudella. Lohkon
+koko on vakio ja jokaisen lohkon salaukseen aina suoritetaan sama kiinteä määrä
+käskyä. Koska viestin jaetaan lohkoihin, niin sen salauksen aikavaativuus on aina O(n).
 
-Miksi näin on. Perustele pseudokoodia käyttäen
----
-
-Onko toteutuksessasi puutteita
----
+Toteuteuksesta löytyy lohkosalausmenetelmän toimintatapa ECB mutta sitä ei käytetä.
